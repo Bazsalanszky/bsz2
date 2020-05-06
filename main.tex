@@ -341,6 +341,9 @@
 \nc\Ker{\textrm{Ker }}
 \nc\im{\textrm{Im }}
 \nc\biz{\subsubsection*{Bizonyítás}}
+\nc\ttl{\subsection{Tétel}}
+\nc\df{\subsection{Definíció}}
+\nc\al{\subsection{Állítás}}
 
 \usepackage{tkz-berge}
 
@@ -427,7 +430,7 @@ $$(a+b)^n=\sum_{i=0}^{n}a^i\cdot b^{n-i}\cdot\bigl( \begin{smallmatrix*}n\\i\end
 Minden $n$. sor elemeinek összege $2^n$.
 \biz
 $$(1+1)^n=2^n=\sum_{i=0}^{n}1^i\cdot 1^{n-i}\cdot\bigl( \begin{smallmatrix*}n\\i\end{smallmatrix*}\bigl)=\sum_{i=0}^{n}\bigl( \begin{smallmatrix*}n\\i\end{smallmatrix*}\bigl)$$
-\section{Gráfelmélet}
+\section{Gráfelmélet alapjai}
 \subsection{Egyszerű gráfok}
 Olyan gráf,amely nem tartalmaz hurok- és párhuzamos éleket.
 \subsection{Részgráf}
@@ -450,17 +453,47 @@ Két gráf akkor összefüggő ha bármely két csúcsa közt létezik élsoroza
 Összefüggő feszített részgráf,amelyből nem emgy ki él.Nem bővíthető tovább összefüggő pontal.
 \subsection{Állítás}
 Ha $G$ egy $n$ csúcsú összefüggő gráf, akkor minimum $n-1$ éle van.
-\biz
-TODO
 \subsection{Definíció}
 Az összefüggő,körmentes gráfokat fának nevezzük.
 \subsection{Állítás}
 Minden n csúcsú fának pont n- éle van.
 \subsection{Lemma}
 G körmentes, n csúcsú gráf. Ekkor legfeljebb n-1 éle van G-nek.
-\biz TODO
 \subsection{Állítás}
 Minden legalább 2 csúcsú fának van levele.
 \subsection{Feszítőfa}
 $G$-nek $F$ feszítőfája, ha $F$ fa és $F$ részgráfja G-nek,$F$ minden csúcsot tartalmaz.
+\section{Euler- és Hamilton körök}
+\subsection{Definíció}
+A G gráf Euler-körének nevezünk egy zárt élsorozatot, ha az él-
+sorozat pontosan egyszer tartalmazza G összes élét. Ha az élsorozat nem feltétlenül
+zárt, akkor Euler-utat kapunk.
+\ttl
+Egy összefüggő G gráfban akkor és csak akkor van Euler-kör, ha G
+minden pontjának fokszáma páros.
+\ttl
+ Egy összefüggő G gráfban akkor és csak akkor van Euler-út, ha G-ben
+a páratlan fokú pontok száma 0 vagy 2.
+\df
+Egy G gráfban Hamilton-körnek nevezünk egy H kört, ha G min-
+den pontját (pontosan egyszer) tartalmazza. Egy utat pedig Hamilton-útnak neve-
+zünk, ha G minden pontját pontosan egyszer tartalmazza.
+\ttl
+Ha a G gráfban létezik k olyan pont, amelyeket elhagyva a gráf több
+mint k komponensre esik, akkor nem létezik a gráfban Hamilton-kör. Ha létezik
+k olyan pont, amelyeket elhagyva a gráf több mint k + 1 komponensre esik, akkor
+nem létezik a gráfban Hamilton-út.
+\subsection{Tétel(Ore)}
+Ha az n pontú G gráfban minden olyan x, y ∈ V (G) pontpárra,
+amelyre {x, y} ∈ E(G) teljesül az is, hogy d(x) + d(y) ≥ n, akkor a gráfban van
+Hamilton-kör.
+\subsection{Tétel(Divac)}
+Ha egy n pontú G gráfban minden pont foka legalább n/2,
+akkor a gráfban létezik Hamilton–kör.
+\section{Gráfok síkbarajzolhatósága}
+\df
+Ha egy gráf lerajzolható a síkba úgy, hogy az élei ne messék egy-
+mást, akkor a gráf síkbarajzolható. A síkbarajzolt gráf a síkot tartományokra
+osztja. Hasonlóan definiáljuk a gömbre rajzolható gráfot.
+
 \end{document}
