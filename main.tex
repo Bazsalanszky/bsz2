@@ -91,7 +91,7 @@
 \usepackage[sectionbib]{chapterbib}
 
 
-\def\re#1{(\ref{#1})} %% Note: AMSTeX's \eqref also does (\ref{#1})
+\def\re#1{(\ref{#1})} %% Note: AMSTex's \eqref also does (\ref{#1})
 \def\are#1{\az+\re{#1}} \def\Are#1{\Az+\re{#1}} %% these three lines
 \def\tre#1#2{\told\re{#1}+#2{}} %% for Hungarian texts
 \def\atre#1#2{\atold\re{#1}+#2{}} \def\Atre#1#2{\Atold\re{#1}+#2{}}
@@ -101,17 +101,17 @@
 \newcommand\nc{\newcommand*} \nc\longnc{\newcommand}
 
 %% Shorthands, to save space, typing and mistyping:
-\let\X\hskip \let\Y\vskip \let\Z\kern %% positioning
-\def\x#1{\X#1em} \def\y#1{\Y#1ex}
-\def\XX#1{\HB to#1{\ }} \def\YY#1{\setbox1\HB to0em{\ }\RB{#1}}
-\def\xx#1{\XX{#1em}} \def\yy#1{\YY{#1ex}}
+\let\x\hskip \let\y\vskip \let\Z\kern %% positioning
+\def\x#1{\x#1em} \def\y#1{\y#1ex}
+\def\xx#1{\HB to#1{\ }} \def\yy#1{\setbox1\HB to0em{\ }\RB{#1}}
+\def\xx#1{\xx{#1em}} \def\yy#1{\yy{#1ex}}
 \let\xph\hphantom \let\yph\vphantom \let\ph\phantom
 \let\HB\hbox \def\SB{\setbox1\HB} \def\CB{\copy1} %% for temporary
 \def\SC{\setbox2\HB} \def\CC{\copy2} %% boxes
-\def\RB#1{\raise#1\CB} \def\XB{\wd1} \def\YB{\ht1} \def\ZB{\dp1}
-\def\RC#1{\raise#1\CC} \def\XC{\wd2} \def\YC{\ht2} \def\ZC{\dp2}
-\def\UB{\Z-\XB} \def\VB{\CB\UB} \def\WB#1{\RB{#1}\UB} %% puts out and
-\def\UC{\Z-\XC} \def\VC{\CC\UC} \def\WC#1{\RC{#1}\UC} %% steps back
+\def\RB#1{\raise#1\CB} \def\xB{\wd1} \def\yB{\ht1} \def\ZB{\dp1}
+\def\RC#1{\raise#1\CC} \def\xC{\wd2} \def\yC{\ht2} \def\ZC{\dp2}
+\def\UB{\Z-\xB} \def\VB{\CB\UB} \def\WB#1{\RB{#1}\UB} %% puts out and
+\def\UC{\Z-\xC} \def\VC{\CC\UC} \def\WC#1{\RC{#1}\UC} %% steps back
 \newcount\n \newdimen\w \newdimen\h %% for numbers, widths, heights
 \def\mathsizes#1#2#3{\mathchoice{#1}{#1}{#2}{#3}} %% the 3 math sizes
 
@@ -139,7 +139,7 @@
 		{\HB{#1}}{\HB{\tS1#1}}{\HB{\tS0#1}}}} %% fonts within formulas
 \nc\txt[3]{\mskip#1mu %% #1, #2: space before and
 	\textinmath{#3}\mskip#2mu\relax } %% after, #3: text to put out
-\nc\mathcl\mathcal %% standard LaTeX version
+\nc\mathcl\mathcal %% standard LaTex version
 \def\mathBf#1{{\mathsizes{\HB{\boldmath %% bf nonletters, bf it letters
 				{$#1$}}}{\HB{\boldmath{$\mS2#1$}}}{\HB{\boldmath{$\mS3#1$}}}}}
 \nc\mathBF[1]{{\h=.03ex{\mathsizes
@@ -313,14 +313,14 @@
 \nc\ffff{\largerfrac{-3}} \nc\fFFF{\largerfrac{+3}} %% larger
 \nc\fffff{\largerfrac{-4}} \nc\fFFFF{\largerfrac{+4}} %% fractions
 \nc\largerfrac[3]{\mathchoice %% \frac at a type size larger by #1
-	{\SB{$\mS0\vcenter{}$}\w=\YB\SB{\rS{#1}$\mS0\vcenter{}$}
-		\advance\w by-\YB\raise\w\HB{\rS{#1}$\mS0\frac{#2}{#3}$}}
-	{\SB{$ \vcenter{}$}\w=\YB\SB{\rS{#1}$ \vcenter{}$}
-		\advance\w by-\YB\raise\w\HB{\rS{#1}$ \frac{#2}{#3}$}}
-	{\SB{$\mS2\vcenter{}$}\w=\YB\SB{\rS{#1}$\mS2\vcenter{}$}
-		\advance\w by-\YB\raise\w\HB{\rS{#1}$\mS2\frac{#2}{#3}$}}
-	{\SB{$\mS3\vcenter{}$}\w=\YB\SB{\rS{#1}$\mS3\vcenter{}$}
-		\advance\w by-\YB\raise\w\HB{\rS{#1}$\mS3\frac{#2}{#3}$}}}
+	{\SB{$\mS0\vcenter{}$}\w=\yB\SB{\rS{#1}$\mS0\vcenter{}$}
+		\advance\w by-\yB\raise\w\HB{\rS{#1}$\mS0\frac{#2}{#3}$}}
+	{\SB{$ \vcenter{}$}\w=\yB\SB{\rS{#1}$ \vcenter{}$}
+		\advance\w by-\yB\raise\w\HB{\rS{#1}$ \frac{#2}{#3}$}}
+	{\SB{$\mS2\vcenter{}$}\w=\yB\SB{\rS{#1}$\mS2\vcenter{}$}
+		\advance\w by-\yB\raise\w\HB{\rS{#1}$\mS2\frac{#2}{#3}$}}
+	{\SB{$\mS3\vcenter{}$}\w=\yB\SB{\rS{#1}$\mS3\vcenter{}$}
+		\advance\w by-\yB\raise\w\HB{\rS{#1}$\mS3\frac{#2}{#3}$}}}
 
 \nc\restr[2]{{\lt.#1\rt|}_{#2}} %% restriction; value at #2
 \nc\tr{\mathop{\txt00{tr}}}
@@ -434,7 +434,7 @@ $$(1+1)^n=2^n=\sum_{i=0}^{n}1^i\cdot 1^{n-i}\cdot\bigl( \begin{smallmatrix*}n\\i
 \subsection{Egyszerű gráfok}
 Olyan gráf,amely nem tartalmaz hurok- és párhuzamos éleket.
 \subsection{Részgráf}
-$G'(V',G')$ gráf részgráfja $G(V,E)$-nek,ha $V'\leq V$,$E'\leq E$ és minedn $E'$-beli él vlgpontja $V'$ elemei.
+$G'(V',G')$ gráf részgráfja $G(V,E)$-nek,ha $V'\leq V$,$E'\leq E$ és minedn $E'$-beli él végpontja $V'$ elemei.
 \subsection{Állítás}
 A fokok összege az élek számának kétszerese.
 \subsection{Teljes gráf}
@@ -465,35 +465,171 @@ Minden legalább 2 csúcsú fának van levele.
 $G$-nek $F$ feszítőfája, ha $F$ fa és $F$ részgráfja G-nek,$F$ minden csúcsot tartalmaz.
 \section{Euler- és Hamilton körök}
 \subsection{Definíció}
-A G gráf Euler-körének nevezünk egy zárt élsorozatot, ha az él-
-sorozat pontosan egyszer tartalmazza G összes élét. Ha az élsorozat nem feltétlenül
-zárt, akkor Euler-utat kapunk.
+A $G$ gráf Euler-körének nevezünk egy zárt élsorozatot, ha az élsorozat pontosan egyszer tartalmazza $G$ összes élét. Ha az élsorozat nem feltétlenül zárt, akkor Euler-utat kapunk.
 \ttl
-Egy összefüggő G gráfban akkor és csak akkor van Euler-kör, ha G
-minden pontjának fokszáma páros.
+Egy összefüggő $G$ gráfban akkor és csak akkor van Euler-kör, ha $G$ minden pontjának fokszáma páros.
 \ttl
- Egy összefüggő G gráfban akkor és csak akkor van Euler-út, ha G-ben
-a páratlan fokú pontok száma 0 vagy 2.
+ Egy összefüggő $G$ gráfban akkor és csak akkor van Euler-út, ha $G$-ben a páratlan fokú pontok száma $0$ vagy $2$.
 \df
-Egy G gráfban Hamilton-körnek nevezünk egy H kört, ha G min-
-den pontját (pontosan egyszer) tartalmazza. Egy utat pedig Hamilton-útnak neve-
-zünk, ha G minden pontját pontosan egyszer tartalmazza.
+Egy $G$ gráfban Hamilton-körnek nevezünk egy $H$ kört, ha $G$ minden pontját (pontosan egyszer) tartalmazza. Egy utat pedig Hamilton-útnak nevezünk, ha $G$ minden pontját pontosan egyszer tartalmazza.
 \ttl
-Ha a G gráfban létezik k olyan pont, amelyeket elhagyva a gráf több
-mint k komponensre esik, akkor nem létezik a gráfban Hamilton-kör. Ha létezik
-k olyan pont, amelyeket elhagyva a gráf több mint k + 1 komponensre esik, akkor
-nem létezik a gráfban Hamilton-út.
+Ha a G gráfban létezik $k$ olyan pont, amelyeket elhagyva a gráf több mint $k$ komponensre esik, akkor nem létezik a gráfban Hamilton-kör. Ha létezik $k$ olyan pont, amelyeket elhagyva a gráf több mint $k + 1$ komponensre esik, akkor nem létezik a gráfban Hamilton-út.
 \subsection{Tétel(Ore)}
-Ha az n pontú G gráfban minden olyan x, y ∈ V (G) pontpárra,
-amelyre {x, y} ∈ E(G) teljesül az is, hogy d(x) + d(y) ≥ n, akkor a gráfban van
-Hamilton-kör.
-\subsection{Tétel(Divac)}
-Ha egy n pontú G gráfban minden pont foka legalább n/2,
-akkor a gráfban létezik Hamilton–kör.
+Ha az n pontú G gráfban minden olyan $x, y \in V (G)$ pontpárra, amelyre ${x, y} \in E(G)$ teljesül az is, hogy $d(x) + d(y) \geq n$, akkor a gráfban van Hamilton-kör.
+\subsection{Tétel(Dirac)}
+Ha egy n pontú G gráfban minden pont foka legalább $n/2$, akkor a gráfban létezik Hamilton–kör.
 \section{Gráfok síkbarajzolhatósága}
 \df
-Ha egy gráf lerajzolható a síkba úgy, hogy az élei ne messék egy-
-mást, akkor a gráf síkbarajzolható. A síkbarajzolt gráf a síkot tartományokra
-osztja. Hasonlóan definiáljuk a gömbre rajzolható gráfot.
+Ha egy gráf lerajzolható a síkba úgy, hogy az élei ne messék egymást, akkor a gráf síkbarajzolható. A síkbarajzolt gráf a síkot tartományokra osztja. Hasonlóan definiáljuk a gömbre rajzolható gráfot.
+\ttl
+Euler formula: Ha egy összefüggő síkbeli gráfnak $n$ csúcsa, $e$ éle és $t$ tartománya van (beleértve a külső, nem korlátos tartományt is), akkor eleget tesz az Euler-formulának: $n-e+t = 2$.
+\ttl
+Ha $G$ egyszerű, síkbarajzolható gráf és pontjainak száma legalább 3, akkor az előbbi jelölésekkel $e\leq3n-6$.
+\ttl
+Ha $G$ egyszerű, síkbarajzolható gráf, minden körének a hossza legalább 4 és pontjainak száma legalább 4, akkor az előbbi jelölésekkel $e\leq2n-4$.
+\ttl
+Egy gráf akkor és csak akkor síkbarajzolható, ha nem tartalmaz olyan részgráfot, amely topologikusan izomorf $K_{3,3}$ -mal vagy $K_5$-tel.
+\section{Gráfok színezése}
+\df
+Legyen $G$ egy gráf és $k\geq1$ egész szám. A $G$ gráf $k$ színnel színezhető, ha a $G$ minden csúcsa kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$ bármely két szomszédos csúcsának a színe különböző. A $G$ kromatikus száma $k$, ha
+$G$ $k$ színnel színezhető, de $(k - 1)$-gyel már nem. $G$ kromatikus számának a jele:
+$\chi(G)$.
+\df
+A $G$ gráfot páros gráfnak nevezzük, ha a $V(G)$ csúcshalmaza felbontható az $A$ és $B$ diszjunkt halmazok egyesítésére úgy, hogy a $G$ minden éle egy
+$A$-beli csúcsot köt össze egy $B$-belivel. Ilyenkor a szokásos $G = (V ; E)$ jelölés helyett a $G = (A, B; E)$ jelölést is használjuk.
+\ttl
+A $G$ gráf akkor és csak akkor páros gráf, ha nem tartalmaz páratlan
+hosszú kört.
+\al
+Minden $k \geq 1$ egész esetén létezik olyan ($2k$ csúcsú) $G$ gráf és a $G$ csúcsainak egy olyan sorrendje, hogy $\chi(G) = 2$, de a mohó színezést a $G$-re a
+csúcsoknak ebben a sorrendjében futtatva az eljárás $k$ színt használ.
+\al
+ Legyen $G$ (hurokélmentes) gráf és jelölje $\Delta(G)$ a $G$-beli maximális
+fokszámot (vagyis a $G$-beli csúcsok fokszámai közül a legnagyobbat). Ekkor a mohó színezést a csúcsok tetszőleges sorrendjében végrehajtva az legföljebb $\Delta(G) + 1$
+színt használ.
+\subsubsection{Következmény}
+ Minden (hurokélmentes) $G$ gráfra $\chi(G)\leq\Delta(G) + 1$.
+\df
+A $G$ gráf klikkszáma $k$, ha $G$-ben található $k$ darab csúcs úgy, hogy ezek közül bármely kettő szomszédos, de $k + 1$ ilyen csúcs már nem található.
+$G$ klikkszámának a jele: $\omega(G)$.
+\al 
+Minden (hurokélmentes) $G$ gráfra $\omega(G) \leq \chi(G)$ teljesül.
+\ttl
+Minden $k\geq2$ esetén létezik olyan $G_k$ gráf, amire $\omega(G_k ) = 2$ és
+$\chi(G_k ) = k$.
+\df
+A $G$ egyszerű gráfot akkor nevezzük intervallumgráfnak, ha léteznek a számegyenesen olyan $I_1 , I_2 ,\dots, I_n \subseteq \mathbb{R}$ (korlátos és zárt) intervallumok, hogy $G$ ezekből megkapható a következő módon: $G$ csúcsai megfelelnek az intervallumoknak és két különböző csúcs pontosan akkor szomszédos $G$-ben, ha a két megfelelő intervallumnak van közös pontja. Ilyenkor azt mondjuk, hogy az ${I_1,I_2 ,\dots, I_n }$
+\ttl
+ Legyen $G$ intervallumgráf és tegyük fel, hogy $G$-t az ${I_1 , I_2 ,\dots, I_n }$
+intervallumrendszer reprezentálja. Ekkor ha az ${I_1 ,I_2,\dots, I_n }$ intervallumokat a baloldali végpontjuk szerinti növekvő sorrendbe rendezzük és $G$ csúcsainak erre a
+sorrendjére hajtjuk végre a mohó színezést, akkor az eljárás $G$-t optimális számú,
+$\chi(G)$ színnel színezi meg.
+\subsubsection{Következmény}
+ Ha $G$ intervallumgráf, akkor rá $\omega(G) = \chi(G)$ teljesül.
+\df 
+ A $G$ gráfban az $M\subseteq E(G)$ élhalmazt párosításnak vagy független
+élhalmaznak nevezzük, ha ($M$ nem tartalmaz hurokélt és) $M$ semelyik két élének
+nincs közös végpontja. Az $M$ maximális párosítás, ha $G$-nek nincs $|M|$-nél nagyobb
+méretű párosítása; a $G$-beli maximális párosítások méretét $\nu(G)$ jelöli. Az M független élhalmaz teljes párosítás, ha $G$ minden csúcsára illeszkedik $M$-beli él.
+\df 
+A $G$ gráf csúcsainak egy $X\subseteq V(G)$ halmazát lefogó ponthalmaznak nevezzük, ha $G$ minden élének legalább az egyik végpontja $X$-beli. Az $X$ minimális lefogó ponthalmaz, ha $G$-ben nincs $|X|$-nél kisebb lefogó ponthalmaz. A $G$-beli minimális lefogó ponthalmazok méretét $\tau(G)$ jelöli.
+\al 
+Minden $G$ gráfra $\nu(G)\leq\tau(G)$ teljesül.
+\df 
+ A $G$ gráf csúcsainak egy $Y\subseteq V(G)$ halmazát független ponthalmaznak nevezzük, ha $Y$-nak semelyik két tagja nem szomszédos $G$-ben (és $Y$ -beli csúcsra hurokél sem illeszkedik). A $G$-beli független ponthalmazok közül a maximálisaknak a méretét $\alpha(G)$ jelöli.
+\df 
+ Az izolált pontot nem tartalmazó $G$ gráf éleinek egy $Z\subseteq E(G)$
+halmazát lefogó élhalmaznak nevezzük, ha a $G$-nek minden csúcsára illeszkedik
+legalább egy $Z$-beli él. A $G$-beli lefogó élhalmazok közül a minimálisaknak a méretét $\rho(G)$ jelöli.
+\al 
+Minden (izolált pontot nem tartalmazó) $G$ gráfra $\alpha(G)\leq\rho(G)$ teljesül.
+\al
+Legyen $G$ tetszőleges gráf, $X\subseteq V(G)$ csúcshalmaz és $Y = V (G) \ X$
+az $X$ komplementere. Ekkor az $X$ pontosan akkor minimális lefogó ponthalmaz
+$G$-ben, ha $Y$ maximális független ponthalmaz $G$-ben.
+\al 
+ Legyen $G$ egy $n$ csúcsú, izolált pontot nem tartalmazó gráf, $k$ pedig tetszőleges nemnegatív egész. Ekkor:
+ \begin{itemize}
+ 	\item ha $G$-ben van $k$ élű párosítás, akkor $G$-ben van legföljebb $n-k$ élű lefogó élhalmaz;
+ 	\item  ha $G$-ben van $k$ élű lefogó élhalmaz, akkor $G$-ben van legalább $n-k$ élű
+ 	párosítás.
+ \end{itemize}
+\subsection{Gallai tétele}
+Minden $n$ csúcsú $G$ gráfra fennállnak az alábbiak:
+\begin{itemize}
+	\item $\alpha(G)+\tau(G) =n$
+	\item $\nu(G)+\rho(G)=n$,ha G-nek nincs izolált pontja.
+\end{itemize}
+
+\section{Összefoglaló táblázat}
+\begin{table}[th]
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		& Maximális független & Minimális lefogó & Összeg \\ \hline
+		pont & $\alpha$      & $\tau$           & $n$      \\ \hline
+		él   & $\nu$         & $\rho$           & $n$      \\ \hline
+	\end{tabular}
+\end{table}
+\df 
+Legyen $G = (A, B; E)$ páros gráf és $M$ egy párosítás $G$-ben. Ekkor
+egy $G$-beli $P$ út javítóút $M$-re nézve, ha rá az alábbiak teljesülnek:
+
+(1) $P$ egy $M$ által nem fedett $A$-beli csúcsból indul;
+
+(2) $P$ egy $M$ által nem fedett $B$-beli csúcsban ér véget;
+
+(3) $P$-nek minden páros sorszámú éle (tehát a második, negyedik stb.) $M$-beli.
+\df\label{def1} 
+Legyen $G = (A, B; E)$ páros gráf és $M$ egy párosítás $G$-ben. A
+$G$-beli $P$ utat alternáló útnak hívjuk, ha rá a  \ref{def1}. Definíció (1) és (3) követelményei teljesülnek (de a (2) nem feltétlenül). Más szóval: alternáló útnak az olyan utakat nevezzük, amelyek párosítás által nem fedett $A$-beli csúcsból indulnak és minden második élük $M$-beli.
+\subsection{Lemma}
+Tegyük fel, hogy a $G = (A, B; E)$ páros gráf $M$ párosítására nézve nincs javítóút $G$-ben. Vezessük be az alábbi jelöléseket:
+
+(1) jelölje $A_1$ , illetve $B_1$ az $M$ által nem fedett $A$, illetve $B$-beli csúcsok halmazát;
+
+(2) jelölje $A_2$ azoknak az ($M$ által fedett) $A$-beli csúcsoknak a halmazát, amelyekbe vezet alternáló út;
+
+(3) jelölje $A_3$ a maradék $A$-beli csúcsoknak a halmazát (amelyek tehát $M$ által
+lefedettek, de nem vezet hozzájuk alternáló út).
+
+(4) Jelölje $B_2$ , illetve $B_3$ az $A_2$, illetve $A_3$ csúcsainak $M$ szerinti párjaiból álló $B$-beli csúcsok halmazait.
+
+Ekkor $G$-nek nincs olyan éle, amely $A_1 \cup A_2$ és $B_1 \cup B_3$ között vezet.
+\ttl
+Ha a $G = (A, B; E)$ páros gráf $M$ párosítására nézve nincs javítóút,
+akkor $M$ maximális párosítás $G$-ben.
+\subsubsection{Következmény (Kőnig tétele)}
+Minden $G$ páros gráfra $\nu(G) = \tau(G)$ teljesül.
+\subsubsection{Következmény}
+Ha a $G$ páros gráf nem tartalmaz izolált pontot, akkor rá $\alpha(G) = \rho(G)$ teljesül.
+\df 
+Legyen $G = (A, B; E)$ páros gráf és $X\subseteq A$ egy tetszőleges részhalmaza $A$-nak. Ekkor az $X$ szomszédságának nevezzük és $N(X)$-szel jelöljük a $B$-nek azt a részhalmazát, amely azokból a $B$-beli csúcsokból áll, amelyeknek van (legalább egy) szomszédja $X$-ben. Képletben:
+ $$N(X) = \{b\in B : \exists a \in X, {a, b} \in E(G) \}$$
+\ttl
+	A $G = (A, B; E)$ páros gráfban akkor és csak akkor létezik $A$-t lefedő
+párosítás, ha minden $X\subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+\subsubsection{Következmény (Frobenius tétele)}
+A $G = (A, B; E)$ páros gráfban akkor és csak akkor létezik teljes párosítás, ha
+$|A| = |B|$ és minden $X \subseteq A$ részhalmazra $|N(X)| \geq |X|$ teljesül.
+\subsubsection{Következmény}
+Ha a $G = (A, B; E)$ páros gráf d-reguláris, ahol $d \geq 1$ tetszőleges egész, akkor $G$-ben van teljes párosítás.
+\subsection{Tutte tétele}
+A $G$ gráfban akkor és csak akkor létezik teljes párosítás, ha a csúcsok minden
+$X\subseteq V(G)$ részhalmazára $c_p (G - X) \leq |X|$ teljesül.
+\section{Gráfok élszínezése}
+\df
+Legyen $G$ egy gráf és $k \geq 1$ egész szám. A $G$ gráf $k$ színnel élszínezhető, ha a $G$ minden éle kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$
+bármely két szomszédos (vagyis közös csúcsra illeszkedő) élének a színe különböző. A $G$ élkromatikus száma $k$, ha $G$ $k$ színnel élszínezhető, de $(k - 1)$-gyel már nem. G élkromatikus számának a jele: $\chi_e(G)$.
+\al 
+Minden (hurokélmentes) $G$ gráfra $\Delta(G) \leq\chi_e(G)$ teljesül.
+\subsection{Vizing tétele}
+Minden G egyszerű gráfra $\chi_e(G) \leq \Delta(G) + 1$ teljesül.
+\subsection{Kőnig élszínezési tétele}
+Minden $G = (A, B; E)$ páros gráfra $\chi_e(G) = \Delta(G)$ teljesül.
+\section{A maximális folyam}
+\df
+Legyen adott a $G = (V, E)$ irányított gráf, annak az $s,t\in V(G)$
+egymástól különböző csúcsai és a $c : E \rightarrow \mathbb{R}^+$ kapacitás függvény (ami tehát minden $e\in E$ élhez egy nemnegatív $c(e)$ kapacitás értéket rendel). Ekkor a $(G, s,t, c)$ négyest hálózatnak nevezzük.
+\df 
 
 \end{document}
