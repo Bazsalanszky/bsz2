@@ -1,0 +1,466 @@
+\documentclass[12pt,a4paper,twoside]{report}
+%\usepackage{geometry} 
+
+
+%\headheight 0mm
+%\headsep 10mm
+
+\linespread{1.1}
+
+%nyelvtani specialitasok
+\usepackage{t1enc}
+\usepackage[utf8]{inputenc}
+\usepackage[magyar,english]{babel}
+\usepackage{times}
+\usepackage{amsfonts}
+
+%matematikai csomagok
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+%abrak, grafika
+\usepackage{graphicx}
+%\usepackage[draft]{graphicx}
+\usepackage{caption}
+\usepackage{epstopdf}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{appendix}
+\usepackage{titlesec}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{color} 
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{tikz} 
+\usepackage{array}
+\usepackage{fixltx2e}
+% Starred variant
+\titleformat{name=\section,numberless}
+{\normalfont\Large\bfseries}
+{}
+{0pt}
+{}
+
+\newcommand{\bibentry}[7]{
+	{\textsc{#1}}%%author
+	{#2}:~%%year
+	{\textit{#3}}%%title
+	{#4}%%others
+	{#5}%%others
+	{#6}%%others
+	{#7}.%%others
+}
+
+
+\makeatletter
+\if0\magyar@opt@@figurecaptions\@@magyar@skiplong\fi
+\if1\magyar@opt@@figurecaptions
+\def\@@magyar@fnum@figure{\textit{\thesection-\thefigure.~\figurename}}%
+\else \def\@@magyar@fnum@figure{\figurename\nobreakspace\thefigure}\fi
+\expandafter\addto\csname extras\CurrentOption\endcsname{%
+	\babel@save\fnum@figure\let\fnum@figure\@@magyar@fnum@figure}
+\@gobble
+{^}
+\makeatother
+
+\frenchspacing
+\sloppy
+
+\renewcommand{\thesection}{\arabic{section}}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+
+
+
+
+%\usepackage{titlesec}
+
+%\titlespacing*{\section}                                                                      %\titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+%{0pt}{18pt plus 1ex minus 1ex}{6pt plus 1ex minus 1ex}
+%\titlespacing*{\subsection}
+%{0pt}{18pt plus 1ex minus 1ex}{6pt plus 1ex minus 1ex}
+%\titlespacing*{\subsubsection}
+%{0pt}{12pt plus 1ex minus 1ex}{6pt plus 1ex minus 1ex}
+%\titlespacing*{\paragraph}
+%{0pt}{6pt plus 1ex minus 1ex}{3pt plus 1ex minus 1ex}
+
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[sectionbib]{chapterbib}
+
+
+\def\re#1{(\ref{#1})} %% Note: AMSTeX's \eqref also does (\ref{#1})
+\def\are#1{\az+\re{#1}} \def\Are#1{\Az+\re{#1}} %% these three lines
+\def\tre#1#2{\told\re{#1}+#2{}} %% for Hungarian texts
+\def\atre#1#2{\atold\re{#1}+#2{}} \def\Atre#1#2{\Atold\re{#1}+#2{}}
+
+
+
+\newcommand\nc{\newcommand*} \nc\longnc{\newcommand}
+
+%% Shorthands, to save space, typing and mistyping:
+\let\X\hskip \let\Y\vskip \let\Z\kern %% positioning
+\def\x#1{\X#1em} \def\y#1{\Y#1ex}
+\def\XX#1{\HB to#1{\ }} \def\YY#1{\setbox1\HB to0em{\ }\RB{#1}}
+\def\xx#1{\XX{#1em}} \def\yy#1{\YY{#1ex}}
+\let\xph\hphantom \let\yph\vphantom \let\ph\phantom
+\let\HB\hbox \def\SB{\setbox1\HB} \def\CB{\copy1} %% for temporary
+\def\SC{\setbox2\HB} \def\CC{\copy2} %% boxes
+\def\RB#1{\raise#1\CB} \def\XB{\wd1} \def\YB{\ht1} \def\ZB{\dp1}
+\def\RC#1{\raise#1\CC} \def\XC{\wd2} \def\YC{\ht2} \def\ZC{\dp2}
+\def\UB{\Z-\XB} \def\VB{\CB\UB} \def\WB#1{\RB{#1}\UB} %% puts out and
+\def\UC{\Z-\XC} \def\VC{\CC\UC} \def\WC#1{\RC{#1}\UC} %% steps back
+\newcount\n \newdimen\w \newdimen\h %% for numbers, widths, heights
+\def\mathsizes#1#2#3{\mathchoice{#1}{#1}{#2}{#3}} %% the 3 math sizes
+
+%% Sizes:
+\nc\tS[1]{\ifcase#1\tiny\or %% type sizes: \tS0 = \tiny, ...
+	\scriptsize\or\footnotesize\or\small\or\normalsize\or\large\or
+	\Large\or\LARGE\or\huge\or\Huge\else\ifnum#1<0\tiny\else\Huge\fi\fi}
+\makeatletter %% ideas credited to relsize.sty
+\nc\cS{\ifx\@currsize\normalsize %% current type size, as 0 .. 9
+	4\else\ifx\@currsize\small 3\else\ifx\@currsize\footnotesize
+	2\else\ifx\@currsize\large 5\else\ifx\@currsize\Large
+	6\else\ifx\@currsize\LARGE 7\else\ifx\@currsize\scriptsize
+	1\else\ifx\@currsize\tiny 0\else\ifx\@currsize\huge
+	8\else\ifx\@currsize\Huge 9\else 4\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+\DeclareRobustCommand\rS[1]{\ifmmode\@nomath\rS\else %% increases type
+	\@tempcnta\cS\advance\@tempcnta#1\relax\tS\@tempcnta} %% size by #1
+\makeatother
+\def\mS#1{\ifcase#1\displaystyle\or %% \ms0 = \displaystyle, ...
+	\textstyle\or\scriptstyle\or\scriptscriptstyle\else\textstyle\fi}
+\nc\dS[1]{\csname\ifcase#1relax\or %% delimiter sizes, \big if 2, ...
+	relax\or big\or Big\or bigg\or Bigg\fi\endcsname}
+
+%% Fonts:
+\nc\textinmath[1]{{\mathsizes %% for texts and text
+		{\HB{#1}}{\HB{\tS1#1}}{\HB{\tS0#1}}}} %% fonts within formulas
+\nc\txt[3]{\mskip#1mu %% #1, #2: space before and
+	\textinmath{#3}\mskip#2mu\relax } %% after, #3: text to put out
+\nc\mathcl\mathcal %% standard LaTeX version
+\def\mathBf#1{{\mathsizes{\HB{\boldmath %% bf nonletters, bf it letters
+				{$#1$}}}{\HB{\boldmath{$\mS2#1$}}}{\HB{\boldmath{$\mS3#1$}}}}}
+\nc\mathBF[1]{{\h=.03ex{\mathsizes
+			{\w=.020em\SB{$ #1$}\WB\h\Z\w\VB\WB{2\h}\Z2\w\VB\WB{2\h}\Z\w\RB\h}
+			{\w=.018em\SB{$\mS2#1$}\WB\h\Z\w\VB\WB{2\h}\Z2\w\VB\WB{2\h}\Z\w\RB\h}
+			{\w=.016em\SB{$\mS3#1$}\WB\h\Z\w\VB\WB{2\h}\Z2\w\VB\WB{2\h}\Z\w\RB\h}}}}
+
+%% Text writing:
+%\nc\re[1]{(\ref{#1})} %% shorter to type than the amsmath \eqref
+\nc\rp\pageref \nc\rb\cite
+\nc\chap[2]{\chapter{#2}\label{#1}}
+\nc\chaP[3]{\chapter[#3]{#2}\label{#1}}
+\nc\sect[2]{{\section{#2}\label{#1}}}
+\nc\secT[3]{\section[#3]{#2}\label{#1}}
+\nc\ssect[2]{\subsection{#2}\label{#1}}
+\nc\ssecT[3]{\subsection[#3]{#2}\label{#1}}
+\nc\sssect[2]{\subsubsection{#2}\label{#1}}
+\nc\sssecT[3]{\subsubsection[#3]{#2}\label{#1}}
+\longnc\quot[1]{`#1'} \longnc\quott[1]{``#1''} %% English quotes
+\longnc\idezz[1]{,,#1''} %% Hungarian quote
+\longnc\idezzz[1]{\raisebox{.22ex} %% quote as >>something<<
+	{$\mS3\gg$}#1\raisebox{.22ex}{$\mS3\ll$}}
+\nc\emp\textit %% emphasizing
+\nc\lat\textit %% latin: i.e. e.g. in situ 
+\nc\ie{\lat{i.e.,\ }} \nc\etal{\lat{et al.\ }} \nc\etc{\lat{etc.\ }}
+\nc\eg{\lat{e.g.,\ }} \nc\insitu{\lat{in situ}} \nc\QED{\lat{Q.E.D.}}
+\nc\cf{cf.\ } \nc\wrt{w.r.t.\ }
+%\nc\lhs{l.h.s.\ } \nc\rhs{r.h.s.\ }
+\nc\lhs{lhs} \nc\rhs{rhs}
+\nc\st[1]{\overset{\bitt\raisebox{-.2ex}[0ex][0ex]{$\mS2*$}}{#1}}
+
+%% Abrak %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\unitlength=.5pt %% pici: egesz tobbszoroseivel lehessen finomhangolni
+%% Aritmetika, szamlalok helyett parancs valtozokkal:
+%% pl. \cca , \ccb , ... valtozoneveket hasznalni;
+\def\set#1#2{\xdef#1{#2}} %\newcount\n
+\def\add#1#2{\n=#1\advance \n by #2\xdef#1{\the\n}}
+\def\sub#1#2{\n=#1\advance \n by-#2\xdef#1{\the\n}} 
+\def\mul#1#2{\n=#1\multiply\n by #2\xdef#1{\the\n}}
+\def\div#1#2{\n=#1\divide \n by #2\xdef#1{\the\n}}
+\def\setadd#1#2#3{\set{#1}{#2}\add{#1}{#3}}
+\def\setsub#1#2#3{\set{#1}{#2}\sub{#1}{#3}}
+\def\setmul#1#2#3{\set{#1}{#2}\mul{#1}{#3}}
+\def\setdiv#1#2#3{\set{#1}{#2}\div{#1}{#3}}
+\def\addadd#1#2#3{\add{#1}{#2}\add{#1}{#3}}
+\def\addsub#1#2#3{\add{#1}{#2}\sub{#1}{#3}}
+\def\subsub#1#2#3{\sub{#1}{#2}\sub{#1}{#3}}
+\def\muladd#1#2#3{\mul{#1}{#2}\add{#1}{#3}}
+\def\mulsub#1#2#3{\mul{#1}{#2}\sub{#1}{#3}}
+\def\muldiv#1#2#3{\mul{#1}{#2}\div{#1}{#3}}
+\def\divadd#1#2#3{\div{#1}{#2}\add{#1}{#3}}
+\def\divsub#1#2#3{\div{#1}{#2}\sub{#1}{#3}}
+\def\setaddadd#1#2#3#4{\setadd{#1}{#2}{#3}\add{#1}{#4}}
+\def\setaddsub#1#2#3#4{\setadd{#1}{#2}{#3}\sub{#1}{#4}}
+\def\setsubsub#1#2#3#4{\setsub{#1}{#2}{#3}\sub{#1}{#4}}
+\def\setmuladd#1#2#3#4{\setmul{#1}{#2}{#3}\add{#1}{#4}}
+\def\setmulsub#1#2#3#4{\setmul{#1}{#2}{#3}\sub{#1}{#4}}
+\def\setmuldiv#1#2#3#4{\setmul{#1}{#2}{#3}\div{#1}{#4}}
+\def\setdivadd#1#2#3#4{\setdiv{#1}{#2}{#3}\add{#1}{#4}}
+\def\setdivsub#1#2#3#4{\setdiv{#1}{#2}{#3}\sub{#1}{#4}}
+\let\bez\qbezier %% Now comes an alternative convention to \qbezier :
+%% instead of the second point, the tangent vectors at the first
+%% and third points are to be given (with integer coordinates):
+%% Usage: \beztan{x1}{y1}{ux}{uy}{x3}{y3}{vx}{vy} 
+\def\beztan#1#2#3#4#5#6#7#8{\setsub{\nP}{#5}{#1}\setsub{\nQ}{#6}{#2}%
+	\setmul{\nR}{\nP}{#8}\setmul{\nS}{\nQ}{#7}\setsub{\nP}{\nR}{\nS}\setmul
+	{\nR}{#3}{#8}\setmul{\nS}{#4}{#7}\setsub{\nQ}{\nR}{\nS}\setmul{\nR}{#3}
+	{\nP}\div{\nR}{\nQ}\setmul{\nS}{#4}{\nP}\div{\nS}{\nQ}\add{\nR}{#1}\add
+	{\nS}{#2}\bez(#1,#2)(\nR,\nS)(#5,#6)}
+%% The same, adding \qbezier 's optional number of points:
+%% Usage: \beztann{numpoints}{x1}{y1}{ux}{uy}{x3}{y3}{vx}{vy} 
+\def\beztann#1#2#3#4#5#6#7#8#9{\setsub{\nP}{#6}{#2}\setsub{\nQ}{#7}{#3}%
+	\setmul{\nR}{\nP}{#9}\setmul{\nS}{\nQ}{#8}\setsub{\nP}{\nR}{\nS}\setmul
+	{\nR}{#4}{#9}\setmul{\nS}{#5}{#8}\setsub{\nQ}{\nR}{\nS}\setmul{\nR}{#4}
+	{\nP}\div{\nR}{\nQ}\setmul{\nS}{#5}{\nP}\div{\nS}{\nQ}\add{\nR}{#2}\add
+	{\nS}{#3}\bez[#1](#2,#3)(\nR,\nS)(#6,#7)}
+\def\mut{\multiput}
+\def\nb{\makebox(0,0)} %% \put needs a box: \put(9,7){\nb[t]{$x$}}}
+
+%% Formula handling:
+\nc\m[1]{\scase=0$ #1 $} %% space around an in-text formula
+\nc\mm[1]{\m{ \, #1 \, }} %% Tip: always use \m{...}
+\nc\mmm[1]{\m{ \,\, #1 \,\, }} %% instead of $...$, thus later
+\nc\mmmm[1]{\m{ \,\,\, #1 \,\,\, }} %% you can add space easily.
+\nc\M[3]{\scase=0$ %% finer and unequal spaces
+	\mskip#1mu#3\mskip#2mu$} %% around an in-text formula
+
+
+%% Some journals don't accept amsmath, some others recommend it...
+%% Making the switch between amsmath and non-amsmath easier:
+\makeatletter\@ifpackageloaded{amsmath}{
+	%% Equations: amsmath definitions:
+	\def\eq#1#2{ \scase=1 \begin{alignn} \elabel{#1} #2 \end{alignn}}
+	%% eq/array, #1: label, #2: formula.
+	\def\eqa{\eq} %% same, only for compatibility with non-amsmath
+	\def\eqn#1#2{ \scase=1 \begin{alignn} \elabel{#1} \non #2 \end{alignn}}
+	%% unnumbered equation (still let's give it a label!)
+	\def\eqan{\eqn} %% same, only for compatibility with non-amsmath
+	\def\lel#1{ \\ \elabel{#1} } %% line break within equation
+	\def\leln#1{\\ \elabel{#1} \non} %% same, non-numbered line (still label it!)
+	\def\tagg{\tag*{}} %% auxiliary, see above
+	%% Shorthands for some other amsmath macros:
+	\def\mat#1{\begin{matrix} #1 \end{matrix}}
+	\def\smat#1{\begin{smallmatrix} #1 \end{smallmatrix}}
+}{
+	%% Equations: non-amsmath definitions:
+	\def\eq#1#2{ \scase=0\begin{equation} \elabel{#1} #2 \end{equation}}
+	\def\eqa#1#2{ \scase=2\begin{eqnarray} \elabel{#1} #2 \end{eqnarray}}
+	\def\eqn#1#2{ \scase=0\begin{displaymath} \elabel{#1} #2 \end{displaymath}}
+	\def\eqan#1#2{\scase=2\begin{eqnarray} \elabel{#1} \non #2 \end{eqnarray}}
+	\def\lel#1{\ifnum\scase=2\else\erroreqaneeded\fi \\ \elabel{#1}}
+	\def\leln#1{\ifnum\scase=2\else\erroreqaneeded\fi \\ \elabel{#1} \non}
+	\def\tagg{\nonumber} %% auxiliary, see above.
+	%% Other macros: non-amsmath version:
+	\def\lvert{|} \def\rvert{|} \def\lVert{\|} \def\rVert{\|}
+	\def\mat#1{{\def\\{\cr}\matrix{#1}}} %% not elegant, just struggling
+	\def\smat#1{\hbox{\scriptsize{$\mat{#1}$}}} %% also a minimal solution
+}\makeatother %% whether amsmath was loaded.
+
+%% Write \s= instead of = in equations. Its meaning will be:
+%% = in \m, \mm, \mmm, \mmmm and \eq as non-amsmath equation,
+%% &= in \eq and \eqa as amsmath alignn
+%% &=& in \eqa as non-amsmath eqnarray
+%% (Naturally, it works for < > etc. as well.)
+\newcount\scase \def\7{&} \def\s#1{\ifcase\scase#1\or\7#1\or\7#1\7\fi}
+
+\def\smatup{\yy{1.9 }} \def\smatdn{\yy{-.8 }} %% in \smat, these add
+\def\smatupdn{\smatup\smatdn} %% distance between lines
+
+%% Brackets: size and shape
+%% \0 = \left(...\right) but with no extra spaces around
+%% \1 = (...)
+%% \2 = \big(...\big) \3 = \Big(...\Big)
+%% \4 = \bigg(...\bigg) \5 = \Bigg(...\Bigg)
+%% \9 = \left(...\right) (ordinary)
+%% #1 = shape: 0 no bracket 2 [ ] 4 < > 6 | |
+%% 1 ( ) 3 \{ \} 5 \langle \rangle 7 \| \|
+\nc\0[2]{\ifcase#1{#2}\or\lt(#2\rt)\or\lt[{#2}\rt]\or\lt\{{#2}\rt\}\or
+	\mathord<{#2}\mathord>\or\lt\langle{#2}\rt\rangle\or\lt\lvert{#2}\rt
+	\rvert\or\lt\lVert{#2}\rt\rVert\fi}
+\nc\1[2]{\ifcase#1{#2}\or(#2)\or[#2]\or\{#2\}\or\mathord<{#2}\mathord
+	>\or\langle{#2}\rangle\or\lvert{#2}\rvert\or\lVert{#2}\rVert\fi}
+\nc\2[2]{\ifcase#1{#2}\or\big(#2\big)\or\big[#2\big]\or\big
+	\{#2\big\}\or\big<#2\big>\or\big\langle#2\big\rangle\or\big
+	\lvert#2\big\rvert\or\big\lVert#2\big\rVert\fi}
+\nc\3[2]{\ifcase#1{#2}\or\Big(#2\Big)\or\Big[#2\Big]\or\Big\{#2\Big
+	\}\or\Big<#2\Big>\or\Big\langle#2\Big\rangle\or\Big\lvert#2\Big
+	\rvert\or\Big\lVert#2\Big\rVert\fi}
+\nc\4[2]{\ifcase#1{#2}\or\bigg(#2\bigg)\or\bigg[#2\bigg]\or\bigg
+	\{#2\bigg\}\or\bigg<#2\bigg>\or\bigg\langle#2\bigg\rangle\or\bigg
+	\lvert#2\bigg\rvert\or\bigg\lVert#2\bigg\rVert\fi}
+\nc\5[2]{\ifcase#1{#2}\or\Bigg(#2\Bigg)\or\Bigg[#2\Bigg]\or\Bigg
+	\{#2\Bigg\}\or\Bigg<#2\Bigg>\or\Bigg\langle#2\Bigg\rangle\or\Bigg 
+	\lvert#2\Bigg\rvert\or\Bigg\lVert#2\Bigg\rVert\fi}
+\nc\9[2]{\ifcase#1{#2}\or\left(#2\right)\or\left[#2\right]\or\left
+	\{#2\right\}\or\left\langle{#2}\right\rangle\or\left\langle{#2}\right
+	\rangle\or\left\lvert{#2}\right\rvert\or\left\lVert{#2}\right\rVert\fi}
+\nc\lt{\mathopen{}\mathclose\bgroup\left} \nc\rt{\aftergroup\egroup\right}
+
+\nc\bi\relax %% spacing finer than \! \, \: \;
+\nc\bit{ \mskip1mu} \nc\biT{ \mskip-1mu} %% Note:
+\nc\bitt{ \mskip2mu} \nc\biTT{ \mskip-2mu} %% \! = -3mu,
+\nc\bittt{ \mskip3mu} \nc\biTTT{ \mskip-3mu} %% \, = 3mu,
+\nc\bitttt{ \mskip4mu} \nc\biTTTT{ \mskip-4mu} %% \: = 4mu,
+\nc\bittttt{\mskip5mu} \nc\biTTTTT{\mskip-5mu} %% \; = 5mu.
+
+\nc\f\frac %% fraction styles
+\nc\F[5]{\1#3{\1#1{#4}/\1#2{#5}}} %% e.g., \F012{a}{b} = [a/(b)]
+\nc\ff{\largerfrac{-1}} \nc\fF{\largerfrac{+1}} %% smaller
+\nc\fff{\largerfrac{-2}} \nc\fFF{\largerfrac{+2}} %% and
+\nc\ffff{\largerfrac{-3}} \nc\fFFF{\largerfrac{+3}} %% larger
+\nc\fffff{\largerfrac{-4}} \nc\fFFFF{\largerfrac{+4}} %% fractions
+\nc\largerfrac[3]{\mathchoice %% \frac at a type size larger by #1
+	{\SB{$\mS0\vcenter{}$}\w=\YB\SB{\rS{#1}$\mS0\vcenter{}$}
+		\advance\w by-\YB\raise\w\HB{\rS{#1}$\mS0\frac{#2}{#3}$}}
+	{\SB{$ \vcenter{}$}\w=\YB\SB{\rS{#1}$ \vcenter{}$}
+		\advance\w by-\YB\raise\w\HB{\rS{#1}$ \frac{#2}{#3}$}}
+	{\SB{$\mS2\vcenter{}$}\w=\YB\SB{\rS{#1}$\mS2\vcenter{}$}
+		\advance\w by-\YB\raise\w\HB{\rS{#1}$\mS2\frac{#2}{#3}$}}
+	{\SB{$\mS3\vcenter{}$}\w=\YB\SB{\rS{#1}$\mS3\vcenter{}$}
+		\advance\w by-\YB\raise\w\HB{\rS{#1}$\mS3\frac{#2}{#3}$}}}
+
+\nc\restr[2]{{\lt.#1\rt|}_{#2}} %% restriction; value at #2
+\nc\tr{\mathop{\txt00{tr}}}
+
+%% Math symbols:
+\nc\e{\mathrm{e}} %% e = 2.718281828459...
+\nc\dd{\mathrm{d}} \nc\ddd{\bit\d} %% differential d
+\nc\pd\partial
+\def\lta#1{{\overset{{\scriptscriptstyle \leftarrow}}{#1}}}
+\def\rta#1{{\overset{{\scriptscriptstyle \rightarrow}}{#1}}}
+\def\nablal{\lta{\nabla}}
+\def\nablar{\rta{\nabla}}
+\nc\ql{\lambda}
+\nc\xv{\underline{x}}
+\nc\yv{\underline{y}}
+\nc\rn{\mathbb{R}^n}
+\nc\rk{\mathbb{R}^k}
+\nc\Ker{\textrm{Ker }}
+\nc\im{\textrm{Im }}
+\nc\biz{\subsubsection*{Bizonyítás}}
+
+\usepackage{tkz-berge}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%%%%%%%%%% \mathbf{}=vastagít \mathrm{}=felállít
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\title{Bevezetés a számelméletbe 2 jegyzet}
+\author{Toldi Balázs Ádám }
+\date{Február 2020}
+
+\begin{document}
+	
+\maketitle
+\tableofcontents
+\newpage
+\section{Kombinatorika alapjai}
+\subsection{Permutáció}
+\subsubsection{Ismétlés nélküli permutáció}
+$k$ különbőző dolog sorrenjeinek száma, ismétlés nélkül.
+Kiszámítása: $k!$
+\subsubsection{Ismétléses permutáció}
+$k$ különbőző dolog sorrenjeinek száma, ismétléssel.
+Kiszámítása: $\frac{(k_1+k_2+..+k_r)!}{k_1!k_2!...k_R!}$
+\subsection{Variáció}
+\subsubsection{Ismétlés nélküli variáció}
+$n$ különbőző dologból választunk $k$ különbözőt és számít a sorrend.
+Kiszámítása:$\frac{n!}{(n-k)!}$
+\subsubsection{Ismétléses variáció}
+$n$ különbőző dolog közül választunk $k$ darab, nem feltétlenül különböző dolgot és számít hogy milyen sorrendben.
+Kitszámítása: $n^k$
+\subsection{Kombináció}
+\subsubsection{Ismétlés nélküli kombináció}
+$n$ különböző dolog közül kiválasztunk $k$ darab különbőző dolgot sorrendtől függetlenül. 
+Kiszámítása: 
+\begin{equation*}
+\begin{pmatrix}
+ n\\
+ k
+\end{pmatrix}
+=\frac{n!}{(n-k)!k!}
+\end{equation*}
+\subsubsection*{Megjegyzés}
+A $\bigl( \begin{smallmatrix} n\\k \end{smallmatrix}\bigl)$ számokat binominális együtthatónak nevezzük.
+\subsubsection{Ismétléses kombináció}
+$n$ kükönböző dologból kiválasztunk $k$ darab, nem feltétlen különböző dolgot és a sorrend nem számít.
+Kiszámítása:
+\begin{equation*}
+\begin{pmatrix}
+ (n-1)+k\\
+ k
+\end{pmatrix}
+\end{equation*}
+\subsubsection{Fontos tudnivaló a binomiális együtthatókról}
+\begin{equation*}
+\begin{pmatrix}
+ n\\
+ k
+\end{pmatrix}
+=
+\begin{pmatrix}
+ n\\
+ n-k
+\end{pmatrix}
+\end{equation*}
+\subsection{Pascal-háromszög}
+\begin{tabular}{>{$n=}l<{$\hspace{12pt}}*{13}{c}}
+0 &&&&&&&1&&&&&&\\
+1 &&&&&&1&&1&&&&&\\
+2 &&&&&1&&2&&1&&&&\\
+3 &&&&1&&3&&3&&1&&&\\
+4 &&&1&&4&&6&&4&&1&&\\
+5 &&1&&5&&10&&10&&5&&1&\\
+6 &1&&6&&15&&20&&15&&6&&1
+\end{tabular}
+\subsubsection{Elemei}
+Minden $n$ sor, $k$. eleme megegyezik $\bigl( \begin{smallmatrix*}n\\k\end{smallmatrix*}\bigl)$-val.
+\subsubsection{Binomiális tétel}
+$$(a+b)^n=\sum_{i=0}^{n}a^i\cdot b^{n-i}\cdot\bigl( \begin{smallmatrix*}n\\i\end{smallmatrix*}\bigl)$$
+\subsubsection{Tétel}
+Minden $n$. sor elemeinek összege $2^n$.
+\biz
+$$(1+1)^n=2^n=\sum_{i=0}^{n}1^i\cdot 1^{n-i}\cdot\bigl( \begin{smallmatrix*}n\\i\end{smallmatrix*}\bigl)=\sum_{i=0}^{n}\bigl( \begin{smallmatrix*}n\\i\end{smallmatrix*}\bigl)$$
+\section{Gráfelmélet}
+\subsection{Egyszerű gráfok}
+Olyan gráf,amely nem tartalmaz hurok- és párhuzamos éleket.
+\subsection{Részgráf}
+$G'(V',G')$ gráf részgráfja $G(V,E)$-nek,ha $V'\leq V$,$E'\leq E$ és minedn $E'$-beli él vlgpontja $V'$ elemei.
+\subsection{Állítás}
+A fokok összege az élek számának kétszerese.
+\subsection{Teljes gráf}
+Bármely két különböző csúcs össze van kötve.
+\subsection{Komplementer gráf}
+Ugyanazon pontokból áll, teljes gráf $-$ gráf élei
+\subsection{Izomorf gráf}
+Két gráfot akkor nevezünk izomorfnak, ha pontjaik és éleik kölcsönösen egyértelműen és illeszkedéstartóan megfeleltethetők egymásnak.
+\subsection{Út}
+Olyan élsorozat,amelyben minden csúcs különböző
+\subsection{Kör}
+Olyan út,amelynek kezdőpontja és végpontja megegyezik
+\subsection{Összefüggő gráfok}
+Két gráf akkor összefüggő ha bármely két csúcsa közt létezik élsorozat/út
+\subsection{Komponens}
+Összefüggő feszített részgráf,amelyből nem emgy ki él.Nem bővíthető tovább összefüggő pontal.
+\subsection{Állítás}
+Ha $G$ egy $n$ csúcsú összefüggő gráf, akkor minimum $n-1$ éle van.
+\biz
+TODO
+\subsection{Definíció}
+Az összefüggő,körmentes gráfokat fának nevezzük.
+\subsection{Állítás}
+Minden n csúcsú fának pont n- éle van.
+\subsection{Lemma}
+G körmentes, n csúcsú gráf. Ekkor legfeljebb n-1 éle van G-nek.
+\biz TODO
+\subsection{Állítás}
+Minden legalább 2 csúcsú fának van levele.
+\subsection{Feszítőfa}
+$G$-nek $F$ feszítőfája, ha $F$ fa és $F$ részgráfja G-nek,$F$ minden csúcsot tartalmaz.
+\end{document}
