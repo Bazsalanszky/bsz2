@@ -48,7 +48,7 @@
 	{#2}:~%%year
 	{\textit{#3}}%%title
 	{#4}%%others
-	{#5}%%others
+v	{#5}%%others
 	{#6}%%others
 	{#7}.%%others
 }
@@ -354,9 +354,9 @@
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist 
 
-\title{Bevezetés a számelméletbe 2 jegyzet}
+\title{Bevezetés a számelméletbe 2 Spellbook}
 \author{Toldi Balázs Ádám }
-\date{Február 2020}
+\date{Május 2020}
 
 \begin{document}
 	
@@ -463,7 +463,7 @@ G körmentes, n csúcsú gráf. Ekkor legfeljebb n-1 éle van G-nek.
 Minden legalább 2 csúcsú fának van levele.
 \subsection{Feszítőfa}
 $G$-nek $F$ feszítőfája, ha $F$ fa és $F$ részgráfja G-nek,$F$ minden csúcsot tartalmaz.
-\section{Euler- és Hamilton körök}
+\section{Euler- és Hamilton körök\protect\footnote{\cite{kv} alapján.}}
 \subsection{Definíció}
 A $G$ gráf Euler-körének nevezünk egy zárt élsorozatot, ha az élsorozat pontosan egyszer tartalmazza $G$ összes élét. Ha az élsorozat nem feltétlenül zárt, akkor Euler-utat kapunk.
 \ttl
@@ -478,7 +478,7 @@ Ha a G gráfban létezik $k$ olyan pont, amelyeket elhagyva a gráf több mint $
 Ha az n pontú G gráfban minden olyan $x, y \in V (G)$ pontpárra, amelyre ${x, y} \in E(G)$ teljesül az is, hogy $d(x) + d(y) \geq n$, akkor a gráfban van Hamilton-kör.
 \subsection{Tétel(Dirac)}
 Ha egy n pontú G gráfban minden pont foka legalább $n/2$, akkor a gráfban létezik Hamilton–kör.
-\section{Gráfok síkbarajzolhatósága}
+\section{Gráfok síkbarajzolhatósága\protect\footnote{\cite{kv} alapján.}}
 \df
 Ha egy gráf lerajzolható a síkba úgy, hogy az élei ne messék egymást, akkor a gráf síkbarajzolható. A síkbarajzolt gráf a síkot tartományokra osztja. Hasonlóan definiáljuk a gömbre rajzolható gráfot.
 \ttl
@@ -489,7 +489,7 @@ Ha $G$ egyszerű, síkbarajzolható gráf és pontjainak száma legalább 3, akk
 Ha $G$ egyszerű, síkbarajzolható gráf, minden körének a hossza legalább 4 és pontjainak száma legalább 4, akkor az előbbi jelölésekkel $e\leq2n-4$.
 \ttl
 Egy gráf akkor és csak akkor síkbarajzolható, ha nem tartalmaz olyan részgráfot, amely topologikusan izomorf $K_{3,3}$ -mal vagy $K_5$-tel.
-\section{Gráfok színezése}
+\section{Gráfok színezése\protect\footnote{\cite{hj} alapján.}}
 \df
 Legyen $G$ egy gráf és $k\geq1$ egész szám. A $G$ gráf $k$ színnel színezhető, ha a $G$ minden csúcsa kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$ bármely két szomszédos csúcsának a színe különböző. A $G$ kromatikus száma $k$, ha
 $G$ $k$ színnel színezhető, de $(k - 1)$-gyel már nem. $G$ kromatikus számának a jele:
@@ -561,7 +561,7 @@ Minden $n$ csúcsú $G$ gráfra fennállnak az alábbiak:
 	\item $\nu(G)+\rho(G)=n$,ha G-nek nincs izolált pontja.
 \end{itemize}
 
-\section{Összefoglaló táblázat}
+\subsection{Összefoglaló táblázat}
 \begin{table}[th]
 	\begin{tabular}{|l|l|l|l|}
 		\hline
@@ -616,7 +616,7 @@ Ha a $G = (A, B; E)$ páros gráf d-reguláris, ahol $d \geq 1$ tetszőleges eg�
 \subsection{Tutte tétele}
 A $G$ gráfban akkor és csak akkor létezik teljes párosítás, ha a csúcsok minden
 $X\subseteq V(G)$ részhalmazára $c_p (G - X) \leq |X|$ teljesül.
-\section{Gráfok élszínezése}
+\section{Gráfok élszínezése\protect\footnote{\cite{hj} alapján.}}
 \df
 Legyen $G$ egy gráf és $k \geq 1$ egész szám. A $G$ gráf $k$ színnel élszínezhető, ha a $G$ minden éle kiszínezhető $k$ adott (tetszőleges) színnel úgy, hogy $G$
 bármely két szomszédos (vagyis közös csúcsra illeszkedő) élének a színe különböző. A $G$ élkromatikus száma $k$, ha $G$ $k$ színnel élszínezhető, de $(k - 1)$-gyel már nem. G élkromatikus számának a jele: $\chi_e(G)$.
@@ -626,10 +626,79 @@ Minden (hurokélmentes) $G$ gráfra $\Delta(G) \leq\chi_e(G)$ teljesül.
 Minden G egyszerű gráfra $\chi_e(G) \leq \Delta(G) + 1$ teljesül.
 \subsection{Kőnig élszínezési tétele}
 Minden $G = (A, B; E)$ páros gráfra $\chi_e(G) = \Delta(G)$ teljesül.
-\section{A maximális folyam}
+\section{A maximális folyam\protect\footnote{\cite{hj} alapján.}}
 \df
 Legyen adott a $G = (V, E)$ irányított gráf, annak az $s,t\in V(G)$
 egymástól különböző csúcsai és a $c : E \rightarrow \mathbb{R}^+$ kapacitás függvény (ami tehát minden $e\in E$ élhez egy nemnegatív $c(e)$ kapacitás értéket rendel). Ekkor a $(G, s,t, c)$ négyest hálózatnak nevezzük.
 \df 
+Egy adott $(G, s,t, c)$ hálózat esetén folyamnak nevezzük az $f : E \rightarrow \mathbb{R}^+$ függvényt, ha rá az alábbi feltételek teljesülnek:
+
+(1) $0 \leq f (e) \leq c(e)$ minden $e \in E(G)$ él esetén;
+
+(2)
+\begin{equation}
+  \sum_{e:v\rightarrow}^{} f(e)=\sum_{e:v\leftarrow}^{} f(e) \text{ minden } v\in V,v\ne s,t \text{ csúcs esetén}
+\end{equation}
+\df
+A $(G, s,t, c)$ hálózatban adott $f$ folyam $m_f$ -fel jelölt értéke:
+\begin{equation}
+  m_f=\sum_{e:
+    s\rightarrow}^{} f(e)=\sum_{e:s\leftarrow}^{} f(e)
+\end{equation}
+\df
+ Legyen $f$ folyam a $(G, s,t, c)$ hálózatban. Ekkor az $f$-hez tartozó $H_f$ segédgráfot a következő képpen definiáljuk. $H_f$ irányított gráf, amelyre $V (H_f ) = V (G)$, vagyis $H_f$ csúcsainak halmaza azonos $G$ csúcshalmazával. Továbbá $H_f$ élhalmazába kétféle típusú él kerül:
+\begin{itemize}
+\item Ha $e = (u, v)$ olyan éle $G$-nek, amelyre $f (e) < c(e)$, akkor $e = (u, v)$ a $H_f$ élhalmazába is bekerül; az ilyen élek neve előreél.
+\item  Ha $e = (u, v)$ olyan éle $G$-nek, amelyre $f (e) > 0$, akkor $e$ megfordítása, az $e0 = (v, u)$ él kerül be $H_f$ élhalmazába; az ilyen élek neve pedig visszaél.
+\end{itemize}
+\df
+Legyen $f$ folyam a $(G, s,t, c)$ hálózatban. Ekkor a $H_f$ -beli, $s$-ből
+$t$-be vezető irányított utakat javítóútnak nevezzük $f$-re nézve.
+\al
+Ha $f$ folyam, akkor a javítóutas algoritmus $8$. sorában végrehajtott
+változtatások után is az marad és $m_f$ értéke $\delta$-val nő.
+\df
+A $(G, s,t, c)$ hálózatban $st$-vágásnak nevezzük az $X\subseteq V(G)$ csúcshalmazt, ha rá $s\in X$ és $t\notin X$ teljesül. Ha a szövegkörnyezetből $s$ és $t$ szerepe egyértelmű, akkor $st$-vágás helyett $X$-et röviden vágásnak is hívjuk.
+\al
+Ha $f$ tetszőleges folyam, $X$ pedig tetszőleges vágás a $(G, s,t, c)$ hálózatban, akkor
+$$m_f=\sum \{f(e)\text{: kilép } X\text{-ből}\}-\sum \{f(e)\text{: belép } X\text{-be}\} $$
+\df
+A $(G, s,t, c)$ hálózatban az $X$ $st$-vágás $c(X)$-szel jelölt kapacitása a
+$$c(X)=\sum \{f(e)\text{: kilép } X\text{-ből}\}$$
+összeg (ahol a fentieknek megfelelően $e = (u, v)$ az $X$-ből kilépő él, ha $u\in X$ és
+$v\notin X$). A vágás kapacitását a vágás értékének is szokták nevezni.
+\al
+Ha $f$ tetszőleges folyam, $X$ pedig tetszőleges vágás a $(G, s,t, c)$ hálózatban, akkor $m_f \leq c(X)$.
+\ttl
+Ha a $(G, s,t, c)$ hálózatban az $f$ folyamra nézve nincs javítóút, akkor
+$f$ maximális folyam (vagyis nincs $m_f$ -nél nagyobb értékű folyam).
+\ttl
+Ha a $G$ gráf $n$ csúcsú és $m$ élű és a $(G, s,t, c)$ hálózatban a maximális
+folyam keresésére szolgáló javítóutas algoritmus futása során $H_f$-ben mindig az
+egyik legrövidebb (vagyis legkevesebb élű) $s$-ből $t$-be vezető irányított utat választjuk
+javítóútnak, akkor az eljárás legföljebb $n\cdot m$ javító lépés után megáll.
+\subsection{Ford-Fulkerson Tétel}
+Bármely $(G,s,t,c)$ hálózatra
+$$\text{max}\{m_f:f\text{ folyam}\} = \text{min} \{ c(X):X\text{ }st\text{vágás}$$,
+vagyis a hálózatbeli maximális folyam értéke megegyezik az $st$-vágások kapacításának minimumával.
+\subsection{Egészértékűségi lemma}
+Tegyük fel, hogy a $(G, s,t, c)$ hálózatban minden $e\in E(G)$ élre $c(e)\in\mathbb{Z}$. Ekkor
+
+(i) létezik olyan $f$ maximális folyam a hálózatban, amelyre $f (e)\in\mathbb{Z}$ minden
+$e\in E(G)$ élre és
+
+(ii) ilyen egészértékű maximális folyam a javítóutas algoritmussal található.
+\clearpage
+\begin{thebibliography}{99}
+%\begin{itemize}
+%\item \href{https://www.interkonyv.hu/konyvek/?isbn=978-963-9664-19-7}{Katona Gyula – Recski András – Szabó Csaba: A számítástudomány alapjai}
+%  \item \href{http://cs.bme.hu/bsz2/bsz2_jegyzet.pdf}{Bevezetés a Számításelméletbe 2 Ideiglenes egyetemi jegyzet}
+  %\end{itemize}
+\bibitem[1]{kv}
+\bibentry{Katona Gyula – Recski András – Szabó Csaba, }{(2002)}{A számítástudomány alapjai, }{Budapest, }{Typotex Kiadó}{}{}
+
+\bibitem[2]{hj}
+\bibentry{Szeszlér Dávid, }{(2019)}{Bevezetés a Számításelméletbe 2 - Ideiglenes egyetemi jegyzet a koronavírus járvány idején zajló távoktatáshoz, }{Budapest, }{\url{http://cs.bme.hu/bsz2/bsz2_jegyzet.pdf}}{}{}
+\end{thebibliography}
 
 \end{document}
